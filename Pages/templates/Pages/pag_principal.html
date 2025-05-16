@@ -1,0 +1,30 @@
+{% extends "Pages/base.html" %}
+{% block title %}Página Principal{% endblock %}
+
+{% block content %}
+<div class="container" style="text-align: center;">
+    <h1>Bienvenido a SAE</h1>
+    <p>Plataforma de apoyo académico para estudiantes y docentes.</p>
+
+    <div style="margin-top: 2rem;">
+        <a href="{% url 'registro' %}" style="
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-right: 1rem;
+        ">Registrarse</a>
+
+        <a href="{% url 'login' %}" style="
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        ">Iniciar Sesión</a>
+    </div>
+</div>
+{% endblock %}

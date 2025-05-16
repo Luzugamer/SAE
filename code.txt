@@ -1,0 +1,31 @@
+git branch -M main 
+git pull
+
+
+git init
+git remote add origin https://github.com/Luzugamer/SAE
+git branch
+git status
+git add .
+git commit -m "Primer commit"
+git push -u origin main
+
+
+git branch
+git branch nombre-rama
+git checkout nombre-rama
+git checkout -b nueva-rama
+git push origin nueva-rama
+
+
+git checkout main                # Cambia a la rama principal
+git pull                         # Asegúrate de estar actualizado
+git merge nombre-rama            # Fusiona otra rama con main
+# o alternativamente
+git pull origin main --rebase    # Trae cambios y reordena tus commits encima
+
+git log                          # Muestra el historial de commits
+git diff                         # Muestra los cambios no confirmados
+git clone <URL>                  # Clona un repositorio desde GitHub
+git reset --hard HEAD            # Revierte todos los cambios no guardados
+git stash                        # Guarda cambios temporalmente (útil si no quieres commitear aún)
