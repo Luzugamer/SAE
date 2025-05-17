@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class ="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div class="bg-white shadow-lg rounded-2x1 p-8 max-w-md w-full">
+            <div class="text-center mb-6">
+                <div class="w-24 h-24 mx-auto bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-4xl font-bold">
+                    {{ nombres|slice:"1" }} {{apellidos|slice:"1" }}
+                    </div>
+                    <h2 class="text-xl font-semibold mt-4">{{ nombres }} {{ apellidos }}</h2>
+                    <p class="text-gray-500">{{ rol }}</p>
+                </div>
+
+                <div class="space-y-4 text-sm text-gray-700">
+                    <div class="flex justify-between">
+                        <span class="font-medium">Correo electrónico:</span>
+                        <span>{{ email }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Rol asignado</span>
+                        <span>{{ rol }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Fecha de registro:</span>
+                        <span>{{ fecha_registro|date:"d/m/Y H:i" }}</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <a href="{% url 'logout' %}" class="text-red-600 hover:underline font-medium">Cerrar sesión</a>
+                        </div>
+                    </div>
+                    
+</body>
+</html>

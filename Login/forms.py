@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario
+from .models import Usuario, Estudiante, Docente
 import re
 
 class UsuarioLoginForm(forms.Form):
@@ -50,3 +50,13 @@ class UsuarioRegistroForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         return cleaned_data
+    
+class EstudianteForm(forms.ModelForm):
+    class Meta: 
+        model = Estudiante
+        fields = ['nombre', 'correo', 'contraseña']
+
+class DocenteFrom(forms.ModelForm):
+    class Meta: 
+        model = Docente
+        fields = ['nombre', 'correo', 'contraseña']

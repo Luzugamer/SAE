@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'SAE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SAE',
-        'USER': 'postgres',
-        'PASSWORD': '897512',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sae',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 

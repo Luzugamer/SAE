@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import UsuarioRegistroForm, UsuarioLoginForm
 from .models import Rol, UsuarioRol
+from django.contrib.auth.decorators import login_required
 
 def registro_view(request):
     if request.method == 'POST':
@@ -42,10 +43,7 @@ def login_view(request):
 
                 if rol_ingresado in roles:
                     login(request, user)
-                    if rol_ingresado == 'profesor':
-                        return redirect('pag_profe')
-                    elif rol_ingresado == 'estudiante':
-                        return redirect('pag_estu')
+                    return redirect('dashboard')
                 else:
                     form.add_error('rol', 'El rol seleccionado no corresponde con el usuario.')
             else:
@@ -55,3 +53,25 @@ def login_view(request):
 
     return render(request, 'Login/login.html', {'form': form})
 
+@login_required
+def dashboard_view(request):
+    user = request.user
+
+    try: 
+        usuario_rol = UsuarioRol.objects.get(usuario=user)
+        rol = usuario_rol.rol.nombre_rol
+    except UsuarioRol.DoesNotExist:
+        rol = "No asignado"
+
+    context = {
+        'nombres':user.nombre,
+        'apellidos':user.apellido,
+        'email':user.correo_electronico,
+        'rol':rol,
+        'fecha_registro': user.fecha_registro,
+    }
+    return render(request, 'Login/dashboard.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

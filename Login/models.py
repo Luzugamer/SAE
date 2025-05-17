@@ -45,3 +45,19 @@ class UsuarioRol(models.Model):
 
     class Meta:
         unique_together = ('usuario', 'rol')
+
+class Estudiante(models.Model):
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField()
+    contraseña = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
+
+class Docente(models.Model):
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField()
+    contraseña = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
