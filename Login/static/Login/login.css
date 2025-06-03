@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #a8f0cb, #c5f0ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+.login-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 360px;
+  transition: all 0.3s ease;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background: #f9f9f9;
+  font-size: 15px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #38d39f;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(56, 211, 159, 0.1);
+}
+
+.radio-group {
+  margin-bottom: 25px;
+}
+
+.radio-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-option input {
+  margin-right: 6px;
+  accent-color: #38d39f;
+}
+
+.login-button {
+  width: 100%;
+  background: #38d39f;
+  border: none;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  background: #32c38c;
+  transform: translateY(-2px);
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.signup-link a {
+  color: #38d39f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: white;
+  color: #38d39f;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background: #e8fdf5;
+}
+
+.back-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 480px) {
+  .radio-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

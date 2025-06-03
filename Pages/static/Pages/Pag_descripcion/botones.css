@@ -1,0 +1,194 @@
+/* Estilos para los botones de autenticación */
+.auth-buttons-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: slideInFromTop 1.2s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.auth-buttons-wrapper {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.auth-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.register-btn {
+    background: linear-gradient(135deg, #17d347, #15e58b, #0ef26c);
+    color: #241047;
+    border: 2px solid rgba(216, 251, 244, 0.3);
+}
+
+.login-btn {
+    background: linear-gradient(135deg, #8df7da, #d8fbf4, #43e2a3);
+    color: #241047;
+    border: 2px solid rgba(23, 211, 71, 0.3);
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #fefffe, #a484b6, #88a4ac);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 25px;
+}
+
+/* Efectos hover */
+.auth-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(23, 211, 71, 0.3);
+}
+
+.register-btn:hover {
+    box-shadow: 0 8px 25px rgba(23, 211, 71, 0.4);
+    border-color: #17d347;
+}
+
+.login-btn:hover {
+    box-shadow: 0 8px 25px rgba(67, 226, 163, 0.4);
+    border-color: #43e2a3;
+}
+
+.auth-btn:hover .btn-icon {
+    transform: rotate(360deg) scale(1.2);
+}
+
+.auth-btn:hover .btn-glow {
+    opacity: 0.1;
+}
+
+.auth-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Animaciones */
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(23, 211, 71, 0.2);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(23, 211, 71, 0.4);
+    }
+}
+
+.auth-btn {
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .auth-buttons-container {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .auth-buttons-wrapper {
+        gap: 10px;
+    }
+    
+    .auth-btn {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-icon {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .auth-buttons-container {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 20px auto;
+        text-align: center;
+    }
+    
+    .auth-buttons-wrapper {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .auth-btn {
+        min-width: 130px;
+    }
+}
+
+/* Efectos adicionales de aparición escalonada */
+.register-btn {
+    animation-delay: 1s;
+}
+
+.login-btn {
+    animation-delay: 1.2s;
+}
+
+/* Efecto de ondas en el fondo */
+.auth-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    z-index: 1;
+}
+
+.auth-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}

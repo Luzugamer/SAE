@@ -24,6 +24,9 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    ultima_sesion = models.DateTimeField(null=True, blank=True)
+    cierre_sesion = models.DateTimeField(null=True, blank=True)
+    
     USERNAME_FIELD = 'correo_electronico'
     REQUIRED_FIELDS = ['nombre', 'apellido']
 

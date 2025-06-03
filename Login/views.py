@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import UsuarioRegistroForm, UsuarioLoginForm
 from .models import Rol, UsuarioRol
+from django.utils import timezone
 
 def registro_view(request):
     if request.method == 'POST':
@@ -41,7 +42,10 @@ def login_view(request):
                 roles = user.usuariorol_set.values_list('rol__nombre_rol', flat=True)
 
                 if rol_ingresado in roles:
+                    user.ultima_sesion = timezone.now()  # REGISTRO DE INICIO
+                    user.save()
                     login(request, user)
+
                     if rol_ingresado == 'profesor':
                         return redirect('pag_profe')
                     elif rol_ingresado == 'estudiante':
@@ -55,3 +59,9 @@ def login_view(request):
 
     return render(request, 'Login/login.html', {'form': form})
 
+def logout_(request):
+    if request.user.is_authenticated:
+        request.user.cierre_sesion = timezone.now()  # REGISTRO DE CIERRE
+        request.user.save()
+    logout(request)
+    return redirect('descripcion')
