@@ -31,7 +31,7 @@ def login_view(request):
             user = authenticate(request, correo_electronico=correo, password=password)
 
             if user is not None:
-                # Obtener el rol del usuario (asumiendo que solo tiene uno)
+                # Obtener el rol del usuario
                 try:
                     usuario_rol = UsuarioRol.objects.get(usuario=user)
                     rol_usuario = usuario_rol.rol.nombre_rol
@@ -41,13 +41,15 @@ def login_view(request):
                     login(request, user)
 
                     # Redireccionar según el rol del usuario
-                    if rol_usuario == 'profesor':
+                    if rol_usuario == 'admin':
+                        return redirect('/admin/')  # Redirigir al panel de administración
+                    elif rol_usuario == 'profesor':
                         return redirect('pag_profe')
                     elif rol_usuario == 'estudiante':
                         return redirect('pag_estu')
                     else:
                         # Para roles no reconocidos, redireccionar a una página por defecto
-                        return redirect('pag_estu')  # o a donde quieras
+                        return redirect('pag_estu')
                         
                 except UsuarioRol.DoesNotExist:
                     form.add_error(None, 'Usuario sin rol asignado. Contacte al administrador.')

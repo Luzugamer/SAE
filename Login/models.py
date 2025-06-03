@@ -10,19 +10,30 @@ class UsuarioManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         
-        # Asignar rol por defecto "estudiante"
-        rol_estudiante, created = Rol.objects.get_or_create(
-            nombre_rol='estudiante',
-            defaults={'descripcion': 'Rol por defecto para estudiantes'}
-        )
-        UsuarioRol.objects.create(usuario=user, rol=rol_estudiante)
+        # Asignar rol por defecto "estudiante" solo si no es staff/superuser
+        if not user.is_staff and not user.is_superuser:
+            rol_estudiante, created = Rol.objects.get_or_create(
+                nombre_rol='estudiante',
+                defaults={'descripcion': 'Rol por defecto para estudiantes'}
+            )
+            UsuarioRol.objects.create(usuario=user, rol=rol_estudiante)
         
         return user
 
     def create_superuser(self, correo_electronico, nombre, apellido, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-        return self.create_user(correo_electronico, nombre, apellido, password, **extra_fields)
+        
+        user = self.create_user(correo_electronico, nombre, apellido, password, **extra_fields)
+        
+        # Asignar rol de admin al superusuario
+        rol_admin, created = Rol.objects.get_or_create(
+            nombre_rol='admin',
+            defaults={'descripcion': 'Administrador del sistema'}
+        )
+        UsuarioRol.objects.create(usuario=user, rol=rol_admin)
+        
+        return user
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     nombre = models.CharField(max_length=255)
