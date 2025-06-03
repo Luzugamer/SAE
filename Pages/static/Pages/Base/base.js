@@ -1,3 +1,16 @@
+Window.djangoUrls = {
+    repositorio: "{% url 'repositorio' %}",
+    cursos: "{% url 'cursos' %}",
+    eventos: "{% url 'eventos' %}",
+    profesorPerfil: "{% url 'profesor_perfil' %}",
+    estudiantePerfil: "{% url 'estudiante_perfil' %}",
+    evaluaciones: "{% url 'evaluaciones' %}",
+    comunidad: "{% url 'comunidad' %}",
+    progreso: "{% url 'progreso' %}",
+    ayuda: "{% url 'ayuda' %}",
+    logout: "{% url 'logout' %}"
+};
+
 document.addEventListener('DOMContentLoaded', function () {
     const navbarToggle = document.getElementById('navbarToggle');
     const bottomNavbar = document.getElementById('bottomNavbar');
@@ -38,55 +51,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Agregar un pequeño delay para que se vea la animación
             setTimeout(() => {
-                // Redirigir según la página y el rol
                 if (window.userIsAuthenticated) {
                     const userRole = window.userRole;
 
                     switch (page) {
                         case 'repositorio':
-                            window.location.href = '/repositorio/';
+                            window.location.href = window.djangoUrls.repositorio;
                             break;
                         case 'cursos':
                             if (userRole === 'profesor') {
-                                window.location.href = '/cursos/';
+                                window.location.href = window.djangoUrls.cursos;
                             }
                             break;
                         case 'eventos':
-                            window.location.href = '/eventos/';
+                            window.location.href = window.djangoUrls.eventos;
                             break;
                         case 'perfil':
                             if (userRole === 'profesor') {
-                                window.location.href = '/profesor/perfil/';
+                                window.location.href = window.djangoUrls.profesorPerfil;
                             } else if (userRole === 'estudiante') {
-                                window.location.href = '/estudiante/perfil/';
+                                window.location.href = window.djangoUrls.estudiantePerfil;
+                            } else if (userRole === 'admin') {
+                                window.location.href = '/admin/';
                             }
                             break;
                         case 'evaluaciones':
                             if (userRole === 'profesor') {
-                                window.location.href = '/evaluaciones/';
+                                window.location.href = window.djangoUrls.evaluaciones;
                             }
                             break;
                         case 'comunidad':
                             if (userRole === 'estudiante') {
-                                window.location.href = '/comunidad/';
+                                window.location.href = window.djangoUrls.comunidad;
                             }
                             break;
                         case 'progreso':
                             if (userRole === 'estudiante') {
-                                window.location.href = '/progreso/';
+                                window.location.href = window.djangoUrls.progreso;
                             }
                             break;
                         case 'ayuda':
-                            window.location.href = '/ayuda/';
+                            window.location.href = window.djangoUrls.ayuda;
                             break;
                         case 'logout':
-                            window.location.href = logoutUrl;
+                            window.location.href = window.djangoUrls.logout;
                             break;
                         default:
                             console.log('Página no encontrada');
                     }
                 }
-            }, 200); // Delay de 200ms para ver la animación
+            }, 200);
         });
 
         // Agregar efecto hover mejorado

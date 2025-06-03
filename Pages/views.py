@@ -11,6 +11,10 @@ def pag_principal(request):
     return render(request, 'Pages/pag_principal.html')
 
 @login_required
+def repositorio(request):
+    return render(request, 'Pages/repositorio.html')
+
+@login_required
 @rol_requerido('estudiante')
 def pag_estu(request):
     return render(request, 'Pages/pag_principal.html')
