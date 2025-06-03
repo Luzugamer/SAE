@@ -209,10 +209,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar efecto de respiración después de la animación inicial
     setTimeout(breathingEffect, 2000);
 
-    // Agregar estilos al head
+    const dynamicStyles = `
+    @keyframes waveExpand {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(8);
+            opacity: 0;
+        }
+    }
+
+    @keyframes bounceInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes bounceInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-200px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    `;
+
     const styleSheet = document.createElement('style');
     styleSheet.textContent = dynamicStyles;
     document.head.appendChild(styleSheet);
+
 
     // Función para manejar scroll y mostrar/ocultar botones
     let lastScrollY = window.scrollY;

@@ -9,6 +9,14 @@ class UsuarioManager(BaseUserManager):
         user = self.model(correo_electronico=correo_electronico, nombre=nombre, apellido=apellido, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        
+        # Asignar rol por defecto "estudiante"
+        rol_estudiante, created = Rol.objects.get_or_create(
+            nombre_rol='estudiante',
+            defaults={'descripcion': 'Rol por defecto para estudiantes'}
+        )
+        UsuarioRol.objects.create(usuario=user, rol=rol_estudiante)
+        
         return user
 
     def create_superuser(self, correo_electronico, nombre, apellido, password=None, **extra_fields):

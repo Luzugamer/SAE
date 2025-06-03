@@ -5,31 +5,14 @@ import re
 class UsuarioLoginForm(forms.Form):
     correo_electronico = forms.EmailField(label="Correo electrónico")
     password = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    
-    ROL_CHOICES = (
-        ('estudiante', 'Estudiante'),
-        ('profesor', 'Profesor'),
-    )
-    rol = forms.ChoiceField(choices=ROL_CHOICES, widget=forms.RadioSelect(attrs={'class': 'horizontal-radio'}))
-
 
 class UsuarioRegistroForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     password_confirm = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
 
-    ROL_CHOICES = (
-        ('estudiante', 'Estudiante'),
-        ('profesor', 'Profesor'),
-    )
-    rol = forms.ChoiceField(
-        choices=ROL_CHOICES,
-        widget=forms.RadioSelect(attrs={'class': 'horizontal-radio'})
-    )
-
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido', 'correo_electronico', 'password', 'password_confirm', 'rol']
-
+        fields = ['nombre', 'apellido', 'correo_electronico', 'password', 'password_confirm']
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
@@ -49,4 +32,10 @@ class UsuarioRegistroForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_confirm = cleaned_data.get('password_confirm')
+
+        if password and password_confirm and password != password_confirm:
+            raise forms.ValidationError('Las contraseñas no coinciden.')
+
         return cleaned_data
