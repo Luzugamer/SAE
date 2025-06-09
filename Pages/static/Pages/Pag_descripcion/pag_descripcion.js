@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     [...cards, ...fadeElements].forEach((element, index) => {
         if (element.classList.contains('fade-in-up')) {
-            element.style.transitionDelay = `${index * 0.1}s`;
+            element.style.transitionDelay = `${index * 0.01}s`;
         }
         observer.observe(element);
     });

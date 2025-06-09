@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,14 +7,14 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
 }
 
 /* Sección hero con imagen de fondo */
 .hero-section {
     height: 100vh;
-    background: linear-gradient(135deg, #241047 0%, #547c89 50%, #43e2a3 100%);
+    background: linear-gradient(135deg, #1ca26d 0%, #08cf79 50%, #14d344b7 100%);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -100,7 +102,7 @@ body {
 }
 
 .content-card {
-    background: #eeeeeec8;
+    background: #c9ffc3;
     padding: 2rem;
     border-radius: 15px;
     border: 1px solid #e0e0e0;
@@ -140,7 +142,7 @@ body {
     font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
     margin-bottom: 3rem;
-    color: #333;
+    color: #000000;
     font-weight: 600;
 }
 
@@ -149,13 +151,13 @@ body {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 3rem;
-    color: #666;
+    color: #000000;
     line-height: 1.8;
 }
 
 /* Sección Qué Hacemos */
 .seccion-background {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #1ca26d 0%, #08cf79 50%, #14d344b7 100%);
 }
 
 /* Sección Qué Encontrarás */
@@ -278,12 +280,14 @@ body {
 
 .social-link {
     color: white;
+    font-size: 20px !important;
     text-decoration: none;
     padding: 0.5rem 0;
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
+    line-height: 1.2;
 }
 
 .social-link:hover {
