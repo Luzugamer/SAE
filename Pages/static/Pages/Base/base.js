@@ -1,16 +1,3 @@
-Window.djangoUrls = {
-    repositorio: "{% url 'repositorio' %}",
-    cursos: "{% url 'cursos' %}",
-    eventos: "{% url 'eventos' %}",
-    profesorPerfil: "{% url 'profesor_perfil' %}",
-    estudiantePerfil: "{% url 'estudiante_perfil' %}",
-    evaluaciones: "{% url 'evaluaciones' %}",
-    comunidad: "{% url 'comunidad' %}",
-    progreso: "{% url 'progreso' %}",
-    ayuda: "{% url 'ayuda' %}",
-    logout: "{% url 'logout' %}"
-};
-
 document.addEventListener('DOMContentLoaded', function () {
     const navbarToggle = document.getElementById('navbarToggle');
     const bottomNavbar = document.getElementById('bottomNavbar');
@@ -34,73 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleIcon = navbarToggle.querySelector('.toggle-icon');
     toggleIcon.innerHTML = '↓';
 
-    // Funcionalidad de navegación mejorada
+    // Solo efectos visuales para los nav items
     navItems.forEach(item => {
         item.addEventListener('click', function (e) {
-            e.preventDefault();
+            // NO preventDefault() - permite que los enlaces funcionen normalmente
             
             // Remover clase active de todos los items
             navItems.forEach(nav => nav.classList.remove('active'));
             
             // Agregar clase active al item clickeado
             this.classList.add('active');
-            
-            // Obtener la página del atributo data-page
-            const page = this.getAttribute('data-page');
-            console.log('Navegando a:', page);
-
-            // Agregar un pequeño delay para que se vea la animación
-            setTimeout(() => {
-                if (window.userIsAuthenticated) {
-                    const userRole = window.userRole;
-
-                    switch (page) {
-                        case 'repositorio':
-                            window.location.href = window.djangoUrls.repositorio;
-                            break;
-                        case 'cursos':
-                            if (userRole === 'profesor') {
-                                window.location.href = window.djangoUrls.cursos;
-                            }
-                            break;
-                        case 'eventos':
-                            window.location.href = window.djangoUrls.eventos;
-                            break;
-                        case 'perfil':
-                            if (userRole === 'profesor') {
-                                window.location.href = window.djangoUrls.profesorPerfil;
-                            } else if (userRole === 'estudiante') {
-                                window.location.href = window.djangoUrls.estudiantePerfil;
-                            } else if (userRole === 'admin') {
-                                window.location.href = '/admin/';
-                            }
-                            break;
-                        case 'evaluaciones':
-                            if (userRole === 'profesor') {
-                                window.location.href = window.djangoUrls.evaluaciones;
-                            }
-                            break;
-                        case 'comunidad':
-                            if (userRole === 'estudiante') {
-                                window.location.href = window.djangoUrls.comunidad;
-                            }
-                            break;
-                        case 'progreso':
-                            if (userRole === 'estudiante') {
-                                window.location.href = window.djangoUrls.progreso;
-                            }
-                            break;
-                        case 'ayuda':
-                            window.location.href = window.djangoUrls.ayuda;
-                            break;
-                        case 'logout':
-                            window.location.href = window.djangoUrls.logout;
-                            break;
-                        default:
-                            console.log('Página no encontrada');
-                    }
-                }
-            }, 200);
         });
 
         // Agregar efecto hover mejorado

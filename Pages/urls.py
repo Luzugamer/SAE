@@ -6,10 +6,6 @@ urlpatterns = [
     path('principal/', pag_principal, name='principal'),
     path('repositorio/', repositorio, name='repositorio'),
 
-    
-    
     path('estudiante/', pag_estu, name='pag_estu'),
     path('profesor/', pag_profe, name='pag_profe'),
-    
-    path('services/', services_view, name='services'),  # Make sure this exists
 ]

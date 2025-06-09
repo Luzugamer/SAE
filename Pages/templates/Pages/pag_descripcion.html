@@ -1,420 +1,184 @@
 {% load static %}
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="es">
+<html lang="es">
 <head>
-    <!-- Meta tags básicos para SEO y responsividad -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="​Work with Experts!">
-    <meta name="description" content="">
-    <title>Services 1</title>
-    
-    <!-- CSS externos y locales usando Django static files -->
-    <link rel="stylesheet" href="{% static 'Pages/Pag_descripcion/nicepage.css' %}" media="screen">
-    <link rel="stylesheet" href="{% static 'Pages/Pag_descripcion/index.css' %}" media="screen">
-    <link rel="stylesheet" href="{% static 'Pages/Pag_descripcion/botones.css' %}" media="screen">
-    
-    <!-- JavaScript usando Django static files -->
-    <script class="u-script" type="text/javascript" src="{% static 'Pages/Pag_descripcion/jquery.js' %}" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{% static 'Pages/Pag_descripcion/nicepage.js' %}" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{% static 'Pages/Pag_descripcion/botones.js' %}" defer=""></script>
-    
-    <!-- Meta tags adicionales -->
-    <meta name="generator" content="Nicepage 7.9.2, nicepage.com">
-    
-    <!-- Google Fonts -->
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Fustat:200,300,400,500,600,700,800">
-    
-    <style>
-        .u-section-1 {
-            background-image: linear-gradient(0deg, rgba(11, 55, 186, 0.55), rgba(11, 55, 186, 0.55)), url('{% static "Pages/images/Baner_principal.jpg" %}');
-            background-position: 50% 50%;
-            background-size: cover;
-        }
-    </style>
-
-    <!-- Schema.org JSON-LD para SEO -->
-    <script type="application/ld+json">{
-        "@context": "http://schema.org",
-        "@type": "Organization",
-        "name": "",
-        "logo": "{% static 'Pages/343310.jpg' %}",
-        "sameAs": [
-                "https://facebook.com/name",
-                "https://twitter.com/name",
-                "https://instagram.com/name"
-        ]
-    }</script>
-    
-    <!-- Meta tags para redes sociales -->
-    <meta name="theme-color" content="#0b37ba">
-    <meta name="twitter:site" content="@">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Services 1">
-    <meta name="twitter:description" content="">
-    <meta property="og:title" content="Services 1">
-    <meta property="og:type" content="website">
-    <meta data-intl-tel-input-cdn-path="intlTelInput/">
+    <title>Página con Efecto Parallax</title>
+    <link rel="stylesheet" href="{% static 'Pages/Pag_descripcion/pag_descripcion.css' %}">
+    <link rel="stylesheet" href="{% static 'Pages/Pag_descripcion/botones.css' %}">
 </head>
+<body>
+    <div class="auth-buttons-container" id="authButtonsContainer">
+        <div class="auth-buttons-wrapper">
+            <a href="{% url 'registro' %}" class="auth-btn register-btn" data-action="register">
+                <span class="btn-icon">👤</span>
+                <span class="btn-text">Registrarse</span>
+                <div class="btn-glow"></div>
+            </a>
+            
+            <a href="{% url 'login' %}" class="auth-btn login-btn" data-action="login">
+                <span class="btn-icon">🔑</span>
+                <span class="btn-text">Iniciar Sesión</span>
+                <div class="btn-glow"></div>
+            </a>
+        </div>
+    </div>
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="parallax-bg" style="background-image: url('{% static 'Pages/images/Baner_principal.jpg' %}');"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Bienvenido a Mi Sitio Web</h1>
+            <p class="hero-subtitle">Tu puerta de entrada al conocimiento digital</p>
+        </div>
+    </section>
 
-<body data-home-page="{% url 'services' %}" data-home-page-title="Services 1" data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="es">
+    <!-- Sección de contenido principal -->
+    <section class="content-section">
+        <div class="content-wrapper">
+            <h2 class="content-title">Nuestros Servicios</h2>
+            
+            <div class="content-grid">
+                <div class="content-card" data-row="1">
+                    <h3>Educación</h3>
+                    <p>Contenido educativo de alta calidad para potenciar tu aprendizaje y desarrollo profesional.</p>
+                </div>
+                
+                <div class="content-card" data-row="1">
+                    <h3>Recursos</h3>
+                    <p>Herramientas y recursos digitales para optimizar tu productividad y alcanzar tus objetivos.</p>
+                </div>
 
-    <!-- SECCIÓN HERO/BANNER PRINCIPAL -->
-    <!-- Esta sección contiene el título principal y botones de llamada a la acción -->
-    <section class="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="carousel_1299" src="" data-image-width="1980" data-image-height="1320">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <!-- BOTONES DE AUTENTICACIÓN DINÁMICOS -->
-            <div class="auth-buttons-container" id="authButtonsContainer">
-                <div class="auth-buttons-wrapper">
-                    <a href="{% url 'registro' %}" class="auth-btn register-btn" data-action="register">
-                        <span class="btn-icon">👤</span>
-                        <span class="btn-text">Registrarse</span>
-                        <div class="btn-glow"></div>
-                    </a>
-                    
-                    <a href="{% url 'login' %}" class="auth-btn login-btn" data-action="login">
-                        <span class="btn-icon">🔑</span>
-                        <span class="btn-text">Iniciar Sesión</span>
-                        <div class="btn-glow"></div>
-                    </a>
+                <div class="content-card" data-row="2">
+                    <h3>Comunidad</h3>
+                    <p>Conéctate con una comunidad activa de personas que comparten tus intereses y pasiones.</p>
+                </div>
+                
+                <div class="content-card" data-row="2">
+                    <h3>Innovación</h3>
+                    <p>Mantente al día con las últimas tendencias y desarrollos en tecnología y conocimiento.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Título principal de la página -->
-            <h2 class="u-align-center u-text u-text-default u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500">
-                {{ page_title|default:"Plataforma Educativa Digital" }}
-            </h2>
+    <!-- Sección Qué Hacemos -->
+    <section class="seccion-background section">
+        <h2 class="section-title fade-in-up">¿Qué Hacemos?</h2>
+        <p class="section-description fade-in-up">Somos una plataforma digital dedicada a democratizar el acceso al conocimiento y facilitar el aprendizaje continuo. Nuestro sitio web está diseñado para ser tu compañero ideal en el viaje hacia el crecimiento personal y profesional, ofreciendo contenido de calidad, herramientas útiles y una comunidad vibrante donde puedes aprender, compartir y crecer junto a otros.</p>
+    </section>
+
+    <!-- Sección Qué Encontrarás -->
+    <section class="what-you-find section">
+        <h2 class="section-title fade-in-up">¿Qué Encontrarás Aquí?</h2>
+        <p class="section-description fade-in-up">Explora nuestra amplia gama de contenidos y servicios diseñados especialmente para ti</p>
+        
+        <div class="features-grid">
+            <div class="feature-item fade-in-up">
+                <div class="feature-icon">📚</div>
+                <h4>Cursos y Tutoriales</h4>
+                <p>Aprende nuevas habilidades con nuestros cursos estructurados y tutoriales paso a paso.</p>
+            </div>
             
-            <!-- Descripción principal -->
-            <p class="u-align-center u-large-text u-text u-text-body-alt-color u-text-variant u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                {{ page_description|default:"Un repositorio centralizado de exámenes y preguntas de práctica para que los estudiantes se preparen de manera efectiva para exámenes de ingreso universitario y otras evaluaciones académicas." }}<br>
+            <div class="feature-item fade-in-up">
+                <div class="feature-icon">🛠️</div>
+                <h4>Herramientas Útiles</h4>
+                <p>Accede a calculadoras, generadores y otras herramientas que facilitan tu trabajo diario.</p>
+            </div>
+            
+            <div class="feature-item fade-in-up">
+                <div class="feature-icon">📝</div>
+                <h4>Artículos y Guías</h4>
+                <p>Lee contenido actualizado sobre tendencias, consejos y mejores prácticas en tu área de interés.</p>
+            </div>
+            
+            <div class="feature-item fade-in-up">
+                <div class="feature-icon">🎯</div>
+                <h4>Recursos Especializados</h4>
+                <p>Encuentra materiales específicos para tu industria o campo de especialización.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Para Qué Hacemos Esto -->
+    <section class="seccion-background section">
+        <h2 class="section-title fade-in-up">¿Para Qué Hacemos Esto?</h2>
+        <p class="section-description fade-in-up">Nuestra misión es crear un mundo donde el aprendizaje sea accesible para todos. Creemos firmemente que el conocimiento es el motor del progreso individual y colectivo. Por eso, trabajamos incansablemente para derribar las barreras que separan a las personas de la educación de calidad, proporcionando un espacio donde cada individuo puede desarrollar su potencial máximo y contribuir positivamente a la sociedad.</p>
+    </section>
+
+    <!-- Sección Beneficios -->
+    <section class="benefits section">
+        <h2 class="section-title fade-in-up">Beneficios de Unirte a Nosotros</h2>
+        <p class="section-description fade-in-up">Descubre las ventajas que obtienes al ser parte de nuestra comunidad</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card fade-in-up">
+                <h4>🚀 Crecimiento Acelerado</h4>
+                <p>Acelera tu desarrollo profesional con contenido curado y metodologías probadas que te ayudarán a alcanzar tus metas más rápido.</p>
+            </div>
+            
+            <div class="benefit-card fade-in-up">
+                <h4>🌐 Acceso 24/7</h4>
+                <p>Aprende a tu ritmo desde cualquier lugar y en cualquier momento. Nuestro contenido está disponible las 24 horas del día.</p>
+            </div>
+            
+            <div class="benefit-card fade-in-up">
+                <h4>💡 Contenido Actualizado</h4>
+                <p>Mantente al día con información fresca y relevante. Actualizamos constantemente nuestro contenido para reflejar las últimas tendencias.</p>
+            </div>
+            
+            <div class="benefit-card fade-in-up">
+                <h4>🤝 Comunidad Activa</h4>
+                <p>Conéctate con profesionales y entusiastas de tu área. Comparte experiencias, haz networking y colabora en proyectos.</p>
+            </div>
+            
+            <div class="benefit-card fade-in-up">
+                <h4>🎯 Personalización</h4>
+                <p>Recibe recomendaciones personalizadas basadas en tus intereses y objetivos de aprendizaje.</p>
+            </div>
+            
+            <div class="benefit-card fade-in-up">
+                <h4>📈 Resultados Medibles</h4>
+                <p>Rastrea tu progreso con métricas claras y certificaciones que validan tu aprendizaje y mejoran tu perfil profesional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-intro">
+                Conecta con nosotros en nuestras redes sociales y mantente al día con las últimas novedades, tips y contenido exclusivo. ¡Síguenos y sé parte de nuestra comunidad!
             </p>
             
-            <!-- Container para botones de acción -->
-            <div class="data-layout-selected u-clearfix u-expanded-width-sm u-expanded-width-xs u-layout-custom-sm u-layout-custom-xs u-layout-wrap u-layout-wrap-1">
-                <div class="u-layout">
-                    <div class="u-layout-row">
-                        <!-- Botón "All services" -->
-                        <div class="u-align-center-xs u-align-right-lg u-align-right-md u-align-right-sm u-align-right-xl u-container-align-center-sm u-container-align-center-xs u-container-style u-layout-cell u-left-cell u-size-30-lg u-size-30-md u-size-30-xl u-size-60-sm u-size-60-xs u-layout-cell-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                            <div class="u-container-layout u-valign-top u-container-layout-1">
-                            </div>
-                        </div>
-                        
-                        <!-- Botón "Contact Us" -->
-                        <div class="u-align-center-xs u-align-left-lg u-align-left-md u-align-left-sm u-align-left-xl u-container-align-center-sm u-container-align-center-xs u-container-style u-layout-cell u-right-cell u-size-30-lg u-size-30-md u-size-30-xl u-size-60-sm u-size-60-xs u-layout-cell-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                            <div class="u-container-layout u-valign-top u-container-layout-2">
-                            </div>
-                        </div>
+            <div class="footer-main">
+                <div class="social-column">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘 Facebook</a>
+                        <a href="#" class="social-link">📸 Instagram</a>
+                        <a href="#" class="social-link">📱 TikTok</a>
+                    </div>
+                </div>
+                
+                <div class="social-column">
+                    <h4>Comunicación</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">✈️ Telegram</a>
+                        <a href="#" class="social-link">📺 YouTube</a>
+                        <a href="#" class="social-link">📧 Gmail</a>
                     </div>
                 </div>
             </div>
             
-            <!-- Crédito de imagen -->
-            <p class="u-align-center u-text u-text-body-alt-color u-text-default u-text-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">
-                imagen de <a href="https://lucaedu.com/" class="u-active-none u-border-1 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-link u-button-style u-hover-none u-none u-radius-0 u-text-body-alt-color u-top-left-radius-0 u-top-right-radius-0 u-btn-3" target="_blank">Lucas</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE LISTA COMPLETA DE SERVICIOS -->
-    <!-- Esta sección muestra los servicios principales en formato de lista -->
-    <section class="u-clearfix u-container-align-left u-section-2" id="sec-1f63">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <!-- Título de la sección -->
-            <h2 class="u-align-left u-text u-text-default u-text-default-xxl u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="0">
-                ¿Qué puedes hacer aquí?
-            </h2>
-            
-            <!-- Lista de servicios principales -->
-            <div class="u-expanded-width u-list u-list-1">
-                <div class="u-repeater u-repeater-1">
-                    
-                    <!-- SERVICIO 1 -->
-                    <div class="u-border-3 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-container-align-left u-container-style u-list-item u-repeater-item u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                        <div class="u-container-layout u-similar-container u-container-layout-1">
-                            <h3 class="u-align-left u-text u-text-3">Buscar exámenes y preguntas por materia, tema o año.</h3>
-                            <ul class="u-align-left u-custom-list u-file-icon u-spacing-10 u-text u-text-4">
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Examine policies, procedures, systems, and overall functions
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Ascertain primary HR needs and areas creating legal risks\ Identify HR strengths/deficiencies, what needs improvement
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Discuss HR best practices and update all HR documentation
-                                </li>
-                            </ul>
-                            <span class="u-align-left u-file-icon u-icon u-text-palette-1-base u-icon-1">
-                                <img src="{% static 'images/545682-a084d5fa.png' %}" alt="">
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- SERVICIO 2 -->
-                    <div class="u-border-3 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-container-style u-list-item u-repeater-item u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                        <div class="u-container-layout u-similar-container u-container-layout-2">
-                            <h3 class="u-align-left u-text u-text-5">Realizar simulacros de exámenes con tiempo real.</h3>
-                            <ul class="u-align-left u-custom-list u-file-icon u-spacing-10 u-text u-text-6">
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Promote positive employee relations
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Policy creation and implementation
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Reader-friendly, organized and concise
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Remove antiquated policies and ensure legally up-to-date
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Maintain managerial discretion while being sufficiently detailed
-                                </li>
-                            </ul>
-                            <span class="u-align-left u-file-icon u-icon u-text-palette-1-base u-icon-2">
-                                <img src="{% static 'images/545682-a084d5fa.png' %}" alt="">
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- SERVICIO 3 -->
-                    <div class="u-border-3 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-container-align-left u-container-style u-list-item u-repeater-item u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                        <div class="u-container-layout u-similar-container u-container-layout-3">
-                            <h3 class="u-align-left u-text u-text-7">Acceder a recursos multimedia y explicaciones detalladas.</h3>
-                            <ul class="u-align-left u-custom-list u-file-icon u-spacing-10 u-text u-text-8">
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Accurate Job descriptions
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Wage and salary surveys
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Process review
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Top candidate sourcing
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Interviewing and selection training
-                                </li>
-                            </ul>
-                            <span class="u-align-left u-file-icon u-icon u-text-palette-1-base u-icon-3">
-                                <img src="{% static 'images/545682-a084d5fa.png' %}" alt="">
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- SERVICIO 4 -->
-                    <div class="u-border-3 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-container-style u-list-item u-repeater-item u-list-item-4" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-                        <div class="u-container-layout u-similar-container u-container-layout-4">
-                            <h3 class="u-align-left u-text u-text-9">Participar en foros de dudas y respuestas.</h3>
-                            <ul class="u-align-left u-custom-list u-file-icon u-spacing-10 u-text u-text-10">
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Examine policies, procedures, systems, and overall functions
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Ascertain primary HR needs and areas creating legal risks\ Identify HR strengths/deficiencies, what needs improvement
-                                </li>
-                                <li style="padding-left: 10px;">
-                                    <div class="u-list-icon u-text-palette-1-base">
-                                        <img src="{% static 'images/142229.png' %}" alt="">
-                                    </div>
-                                    Discuss HR best practices and update all HR documentation
-                                </li>
-                            </ul>
-                            <span class="u-align-left u-file-icon u-icon u-text-palette-1-base u-icon-4">
-                                <img src="{% static 'images/545682-a084d5fa.png' %}" alt="">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE Beneficios de la Plataforma -->
-    <section class="u-align-left u-clearfix u-container-align-center u-container-align-left u-section-3" id="sec-82e8">
-        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <!-- Título de servicios adicionales -->
-            <h2 class="u-align-center u-text u-text-default u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1200" data-animation-delay="0">
-                Beneficios de la Plataforma
-            </h2>
-            
-            <!-- Layout de 3 columnas para servicios adicionales -->
-            <div class="data-layout-selected u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-                <div class="u-gutter-0 u-layout">
-                    <div class="u-layout-row">
-                        
-                        <!-- COLUMNA 1: Registro -->
-                        <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-shape-rectangle u-size-20 u-layout-cell-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="200">
-                            <div class="u-container-layout u-container-layout-1">
-                                <p class="u-spacing-20 u-text u-text-2">
-                                    <span style="font-weight: 700;"></span>Registro <br>
-                                    Regístrate y guarda tu progreso para continuar 
-                                    practicando en cualquier momento.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- COLUMNA 2: Estadisticas -->
-                        <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-shape-rectangle u-size-20 u-layout-cell-2" data-animation-name="customAnimationIn" data-animation-duration="1200" data-animation-delay="400">
-                            <div class="u-container-layout u-valign-top u-container-layout-2">
-                                <p class="u-spacing-20 u-text u-text-3">
-                                    <span style="font-weight: 700;"></span>Estadísticas<br>
-                                    Visualiza estadísticas detalladas de tus resultados 
-                                    y mejora tus puntos débiles.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- COLUMNA 3: Foro -->
-                        <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-shape-rectangle u-size-20 u-layout-cell-3" data-animation-name="customAnimationIn" data-animation-duration="1200" data-animation-delay="600">
-                            <div class="u-container-layout u-valign-top u-container-layout-3">
-                                <p class="u-spacing-20 u-text u-text-4">
-                                    <span style="font-weight: 700;"></span>Foro<br>
-                                    Participa en foros para resolver dudas 
-                                    y compartir conocimientos con otros estudiantes.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <!-- Sección de pie de página con información de contacto y enlaces -->
-    <footer class="u-align-center u-border-2 u-border-grey-60 u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-container-align-center u-footer u-palette-1-base u-footer" id="sec-24a1">
-        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            
-            <!-- Descripción del footer -->
-            <p class="u-text u-text-default u-text-2">Plataforma educativa digital que funciona como repositorio centralizado de exámenes y preguntas de práctica. 
-                Su objetivo es proporcionar a los estudiantes una herramienta para prepararse de manera efectiva para exámenes de ingreso universitario y otros procesos de evaluación académica.</p>
-            
-            <!-- Layout de información del footer en 3 columnas -->
-            <div class="data-layout-selected u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-                <div class="u-layout">
-                    <div class="u-layout-row">
-                        
-                        <!-- COLUMNA 1: Información de contacto principal -->
-                        <div class="u-container-align-left u-container-style u-layout-cell u-size-18 u-layout-cell-1">
-                            <div class="u-container-layout u-valign-top u-container-layout-1">
-                                <!-- Oficina principal -->
-                                <h4 class="u-align-left u-text u-text-4">Main office</h4>
-                                <p class="u-align-left u-text u-text-5">
-                                    {{ company_address|default:"2102 George Urban Blvd, 3rd Floor,<br>New York, NY ​14043" }}
-                                </p>
-                                
-                                <!-- Teléfono -->
-                                <h4 class="u-align-left u-text u-text-6">Phone</h4>
-                                <p class="u-align-left u-text u-text-default u-text-7">
-                                    <span class="u-file-icon u-icon u-text-palette-1-light-1">
-                                        <img src="{% static 'images/1257-b96b1e35.png' %}" alt="">
-                                    </span> 
-                                    <a href="tel:{{ company_phone|default:'+1234567890' }}" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-1-light-2 u-text-body-alt-color u-text-hover-palette-1-light-2 u-btn-2">{{ company_phone|default:"+123 456 7890" }}</a>
-                                </p>
-                                
-                                <!-- Email -->
-                                <h4 class="u-align-left u-text u-text-8">Email</h4>
-                                <a href="mailto:{{ company_email|default:'hi@email.com' }}" class="u-active-none u-align-left u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-1-light-2 u-text-body-alt-color u-text-hover-palette-1-light-2 u-btn-3">
-                                    <span class="u-file-icon u-icon u-text-palette-1-light-1">
-                                        <img src="{% static 'images/2099199-d03acd7d.png' %}" alt="">
-                                    </span>{{ company_email|default:"hi@email.com" }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Redes sociales y correo en la parte baja, animadas -->
-                    <div class="u-animation-fadeIn"
-                        style="width: 100%; display: flex; flex-direction: column; align-items: center; position: absolute; left: 0; right: 0; bottom: 20px;"
-                        data-animation-delay="600">
-                        <div style="
-                            margin-bottom: 10px;
-                            font-size: 3.5rem;
-                            display: flex;
-                            gap: 28px;
-                            ">
-                            <a href="https://facebook.com/" target="_blank" style="color: #1877f3; filter: drop-shadow(0 2px 8px #1877f3aa); transition: transform 0.2s;">
-                                <i class="fab fa-facebook" style="transition: color 0.2s, transform 0.2s;"></i>
-                            </a>
-                            <a href="https://twitter.com/" target="_blank" style="color: #1da1f2; filter: drop-shadow(0 2px 8px #1da1f2aa); transition: transform 0.2s;">
-                                <i class="fab fa-twitter" style="transition: color 0.2s, transform 0.2s;"></i>
-                            </a>
-                            <a href="https://instagram.com/" target="_blank" style="color: #e4405f; filter: drop-shadow(0 2px 8px #e4405faa); transition: transform 0.2s;">
-                                <i class="fab fa-instagram" style="transition: color 0.2s, transform 0.2s;"></i>
-                            </a>
-                            <a href="https://wa.me/" target="_blank" style="color: #25d366; filter: drop-shadow(0 2px 8px #25d366aa); transition: transform 0.2s;">
-                                <i class="fab fa-whatsapp" style="transition: color 0.2s, transform 0.2s;"></i>
-                            </a>
-                            <a href="https://tiktok.com/" target="_blank" style="color: #000; filter: drop-shadow(0 2px 8px #0008); transition: transform 0.2s;">
-                                <i class="fab fa-tiktok" style="transition: color 0.2s, transform 0.2s;"></i>
-                            </a>
-                        </div>
-                        <style>
-                            /* Efecto hover para los íconos de redes sociales */
-                            .u-footer a:hover i {
-                                transform: scale(1.18) rotate(-8deg);
-                                filter: brightness(1.2) drop-shadow(0 4px 16px #fff4);
-                            }
-                        </style>
-                        <p class="u-small-text u-text u-text-variant u-text-2 u-animation-fadeIn" style="font-size: 0.95rem; color: #fff;" data-animation-delay="800">
-                            ¿Tienes dudas o sugerencias? Escríbenos a <a href="mailto:contacto@plataformaeducativa.com" style="color: #24d8ab;">contacto@plataformaeducativa.com</a>
-                        </p>
-                        <p class="u-small-text u-text u-text-variant u-text-2 u-animation-fadeIn" style="font-size: 0.95rem; color: #aaa;" data-animation-delay="900">
-                            &copy; 2025 Plataforma Educativa Digital. Todos los derechos reservados.
-                        </p>
-                    </div>
-                </div>
+            <div class="contact-info">
+                <div class="phone-number">📞 +51 123 456 789</div>
+                <div class="copyright">© 2025 Mi Sitio Web. Todos los derechos reservados.</div>
             </div>
         </div>
     </footer>
+
+    <script src="{% static 'Pages/Pag_descripcion/pag_descripcion.js' %}"></script>
+    <script src="{% static 'Pages/Pag_descripcion/botones.js' %}"></script>
 </body>
 </html>
-
-    

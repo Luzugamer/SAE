@@ -26,7 +26,3 @@ def pag_profe(request):
 
 
 
-def services_view(request):
-    return render(request, 'Pages/pag_pre.html')
-
-

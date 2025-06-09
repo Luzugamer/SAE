@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.cache import never_cache
 from .forms import UsuarioRegistroForm, UsuarioLoginForm
-from .models import Rol, UsuarioRol, Usuario
+from .models import UsuarioRol, Usuario
 from django.utils import timezone
 
 def registro_view(request):
@@ -60,9 +61,10 @@ def login_view(request):
 
     return render(request, 'Login/login.html', {'form': form})
 
+@never_cache
 def logout_(request):
     if request.user.is_authenticated:
-        request.user.cierre_sesion = timezone.now()  # REGISTRO DE CIERRE
+        request.user.cierre_sesion = timezone.now()
         request.user.save()
     logout(request)
     return redirect('descripcion')
