@@ -35,31 +35,36 @@ body {
 /* Bottom Navbar */
 .bottom-navbar {
     position: fixed;
-    bottom: -35px; /* Oculto por defecto, solo se ven los iconos */
+    bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #4a5ba6 0%, #2d8a7a 100%); /* Colores más suaves */
-    padding: 25px 35px;
+    transform: translateX(-50%) translateY(85%); /* Oculta el 85% inicialmente */
+    background: linear-gradient(135deg, #4a5ba6 0%, #2d8a7a 100%);
+    padding: 10px 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
     border-radius: 25px 25px 0 0;
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.25);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     max-width: 90%;
-    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer; /* Indica que es interactivo */
+}
+
+.bottom-navbar::before,
+.navbar-toggle {
+    display: none !important;
 }
 
 .bottom-navbar:hover {
-    bottom: 0; /* Se muestra completamente al hacer hover */
+    transform: translateX(-50%) translateY(0); /* Se muestra completamente al hacer hover */
     box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .bottom-navbar.hidden {
-    bottom: -100vh; /* Se oculta completamente hacia abajo */
+    transform: translateX(-50%) translateY(100%); /* Se oculta completamente hacia abajo */
 }
 
 .nav-item {
@@ -69,13 +74,13 @@ body {
     justify-content: center;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 12px; /* Tamaño moderado */
+    font-size: 12px;
     font-weight: 500;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     padding: 14px 16px;
     border-radius: 20px;
-    min-width: 68px; /* Tamaño moderado */
+    min-width: 68px;
     position: relative;
     text-align: center;
 }
@@ -88,7 +93,7 @@ body {
 }
 
 .nav-item.active {
-    background: #22d3ee; /* Color más suave para el activo */
+    background: #22d3ee;
     color: #1e293b;
     font-weight: 600;
     transform: translateY(-5px);
@@ -101,7 +106,7 @@ body {
 }
 
 .nav-icon {
-    width: 25px; /* Tamaño moderado */
+    width: 25px;
     height: 25px;
     margin-bottom: 5px;
     fill: currentColor;
@@ -154,20 +159,6 @@ body {
     transform: rotate(180deg);
 }
 
-/* Indicador visual para mostrar que hay más contenido */
-.bottom-navbar::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
 .bottom-navbar:hover::before {
     background: rgba(255, 255, 255, 0.9);
     width: 60px;
@@ -178,11 +169,11 @@ body {
     .bottom-navbar {
         gap: 2rem;
         padding: 20px 26px;
-        bottom: -30px;
+        transform: translateX(-50%) translateY(85%); /* Mantiene el 85% oculto */
     }
 
     .bottom-navbar:hover {
-        bottom: 0;
+        transform: translateX(-50%) translateY(0);
     }
 
     .nav-item {
@@ -209,11 +200,11 @@ body {
         gap: 1.5rem;
         padding: 16px 20px;
         max-width: 95%;
-        bottom: -25px;
+        transform: translateX(-50%) translateY(85%); /* Mantiene el 85% oculto */
     }
 
     .bottom-navbar:hover {
-        bottom: 0;
+        transform: translateX(-50%) translateY(0);
     }
 
     .nav-item {
@@ -244,7 +235,11 @@ body {
     .bottom-navbar {
         gap: 1rem;
         padding: 13px 16px;
-        bottom: -20px;
+        transform: translateX(-50%) translateY(85%); /* Mantiene el 85% oculto */
+    }
+
+    .bottom-navbar:hover {
+        transform: translateX(-50%) translateY(0);
     }
 
     .nav-item {

@@ -30,33 +30,16 @@
 }
 
 .register-btn {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
+    background: linear-gradient(45deg, #0ac4f2d1, #00b8d0ce);
     color: white;
 }
 
 .login-btn {
-    background: linear-gradient(45deg, #2196F3, #1976D2);
+    background: linear-gradient(45deg, #0700c8, #0063c6);
     color: white;
 }
 
 .auth-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* Footer optimizado */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.social-links a {
-    font-size: 2rem;
-    transition: transform 0.3s ease;
-}
-
-.social-links a:hover {
-    transform: scale(1.2) rotate(-5deg);
 }

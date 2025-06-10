@@ -25,8 +25,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Pages.urls')),
     path('', include('Login.urls')),
+    path('', include('M3_modulo_de_examen.urls')),
+    path('comunidad/', include(('M6_Comunidades.urls', 'M6_Comunidades'), namespace='comunidad')),
     path('logout/', logout_, name='logout'),
 ] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

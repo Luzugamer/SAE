@@ -14,7 +14,7 @@ body {
 /* Sección hero con imagen de fondo */
 .hero-section {
     height: 100vh;
-    background: linear-gradient(135deg, #1ca26d 0%, #08cf79 50%, #14d344b7 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4ecdc4b7 100%);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -102,15 +102,15 @@ body {
 }
 
 .content-card {
-    background: #c9ffc3;
+    background: #d0e7ff;
     padding: 2rem;
     border-radius: 15px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #b0d4f1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     transform: translateX(100px);
     min-height: 200px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 40, 100, 0.1);
 }
 
 .content-card:hover {
@@ -121,7 +121,7 @@ body {
 .content-card h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: #4ecdc4;
+    color: #2a5298;
     font-weight: 600;
 }
 
@@ -157,7 +157,7 @@ body {
 
 /* Sección Qué Hacemos */
 .seccion-background {
-    background: linear-gradient(135deg, #1ca26d 0%, #08cf79 50%, #14d344b7 100%);
+    background: linear-gradient(135deg, #4f84e7 0%, #336ed4 50%, #0b1654b7 100%);
 }
 
 /* Sección Qué Encontrarás */
@@ -173,7 +173,7 @@ body {
 }
 
 .feature-item {
-    background: #f8f9fa;
+    background: #eef6fb;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
@@ -188,7 +188,7 @@ body {
 .feature-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: #4ecdc4;
+    color: #2a8dd0;
 }
 
 .feature-item h4 {
@@ -239,7 +239,7 @@ body {
 
 /* Footer */
 .footer {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
     color: white;
     padding: 3rem 2rem 1rem;
 }
@@ -268,7 +268,7 @@ body {
 
 .social-column h4 {
     margin-bottom: 1rem;
-    color: #4ecdc4;
+    color: #2a8dd0;
     font-size: 1.2rem;
 }
 
@@ -304,7 +304,7 @@ body {
 .phone-number {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #4ecdc4;
+    color: #2a8dd0;
     margin-bottom: 1rem;
 }
 

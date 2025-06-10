@@ -6,13 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentIndex = 0;
     const totalCards = cards.length;
-    const radius = 400; // Radio aumentado para mayor separación
+    const radius = 400;
+    let isAnimating = false; // Flag para controlar que termine la animación
     
     // Calcular el ángulo entre cada carta
     const angleStep = 360 / totalCards;
     
     function updateCarousel() {
-        // Rotar el contenedor principal - rotación negativa para dirección correcta
+        // Marcar que está animando
+        isAnimating = true;
+        
+        // Rotar el contenedor principal
         const rotation = -currentIndex * angleStep;
         console.log('updateCarousel - rotation:', rotation, 'degrees');
         cardsContainer.style.transform = `rotateY(${rotation}deg)`;
@@ -34,28 +38,57 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Controlar botones de navegación
-        updateNavigationButtons();
+        // Esperar a que termine la animación CSS (300ms + margen de seguridad)
+        setTimeout(() => {
+            isAnimating = false;
+            console.log('Animation completed, ready for next transition');
+        }, 350);
     }
     
     function updateNavigationButtons() {
-        // Los botones siempre están habilitados en un carrusel circular
+        // Los botones siempre están habilitados en un carrusel continuo
         prevBtn.classList.remove('disabled');
         nextBtn.classList.remove('disabled');
     }
     
     function nextCard() {
+        // No permitir nueva transición hasta que termine la animación actual
+        if (isAnimating) {
+            console.log('Animation in progress, ignoring click');
+            return;
+        }
+        
         console.log('nextCard called - currentIndex before:', currentIndex);
-        // Avanzar al siguiente índice (flecha derecha)
+        
+        // Avanzar al siguiente índice
         currentIndex = (currentIndex + 1) % totalCards;
+        
+        // Si llegamos al final, continuar desde el inicio (comportamiento de cinta)
+        if (currentIndex === 0) {
+            console.log('Reached end, continuing from beginning');
+        }
+        
         console.log('nextCard called - currentIndex after:', currentIndex);
         updateCarousel();
     }
     
     function prevCard() {
+        // No permitir nueva transición hasta que termine la animación actual
+        if (isAnimating) {
+            console.log('Animation in progress, ignoring click');
+            return;
+        }
+        
         console.log('prevCard called - currentIndex before:', currentIndex);
-        // Retroceder al índice anterior (flecha izquierda)
+        
+        // Retroceder al índice anterior
         currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        
+        // Si llegamos al inicio yendo hacia atrás, continuar desde el final
+        if (currentIndex === totalCards - 1) {
+            console.log('Reached beginning, continuing from end');
+        }
+        
         console.log('prevCard called - currentIndex after:', currentIndex);
         updateCarousel();
     }
@@ -88,21 +121,40 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', function() {
         console.log('Right button clicked!');
         nextCard();
-        updateActiveCardAnimation();
+        
+        // Actualizar animación activa después de que termine la transición
+        setTimeout(() => {
+            if (!isAnimating) {
+                updateActiveCardAnimation();
+            }
+        }, 350);
     });
     
     prevBtn.addEventListener('click', function() {
         console.log('Left button clicked!');
         prevCard();
-        updateActiveCardAnimation();
+        
+        // Actualizar animación activa después de que termine la transición
+        setTimeout(() => {
+            if (!isAnimating) {
+                updateActiveCardAnimation();
+            }
+        }, 350);
     });
     
     // Click en las cartas para navegar
     cards.forEach((card, index) => {
         card.addEventListener('click', function() {
-            if (index !== currentIndex) {
+            if (index !== currentIndex && !isAnimating) {
                 currentIndex = index;
                 updateCarousel();
+                
+                // Actualizar animación activa después de que termine la transición
+                setTimeout(() => {
+                    if (!isAnimating) {
+                        updateActiveCardAnimation();
+                    }
+                }, 350);
             }
         });
         
@@ -147,25 +199,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Función para actualizar el carrusel con animaciones
-    function updateCarouselWithAnimations() {
-        updateCarousel();
-        // Pequeño delay para que las clases CSS se apliquen primero
-        setTimeout(updateActiveCardAnimation, 100);
-    }
-    
-    // Auto-play opcional (descomenta si quieres que rote automáticamente)
-    /*
-    setInterval(function() {
-        nextCard();
-        updateActiveCardAnimation();
-    }, 4000); // Cambiar cada 4 segundos
-    */
-    
     // Inicializar el carrusel
     positionCards();
     updateCarousel();
-    updateActiveCardAnimation();
+    
+    // Esperar a que termine la inicialización para activar animaciones
+    setTimeout(() => {
+        updateActiveCardAnimation();
+    }, 350);
     
     // Soporte para touch/swipe en dispositivos móviles
     let startX = 0;
@@ -175,20 +216,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let isSwipping = false;
     
     cardsContainer.addEventListener('touchstart', function(e) {
-        const touch = e.touches[0];
-        startX = touch.clientX;
-        startY = touch.clientY;
-        isSwipping = true;
+        if (!isAnimating) {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            isSwipping = true;
+        }
     });
     
     cardsContainer.addEventListener('touchmove', function(e) {
-        if (isSwipping) {
+        if (isSwipping && !isAnimating) {
             e.preventDefault(); // Prevenir scroll
         }
     });
     
     cardsContainer.addEventListener('touchend', function(e) {
-        if (!isSwipping) return;
+        if (!isSwipping || isAnimating) return;
         
         const touch = e.changedTouches[0];
         distX = touch.clientX - startX;
@@ -214,7 +257,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners para animaciones de botones
     [prevBtn, nextBtn].forEach(button => {
         button.addEventListener('mouseenter', function() {
-            animateButton(this, 1.15);
+            if (!isAnimating) {
+                animateButton(this, 1.15);
+            }
         });
         
         button.addEventListener('mouseleave', function() {
@@ -222,11 +267,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         button.addEventListener('mousedown', function() {
-            animateButton(this, 1.05);
+            if (!isAnimating) {
+                animateButton(this, 1.05);
+            }
         });
         
         button.addEventListener('mouseup', function() {
-            animateButton(this, 1.15);
+            if (!isAnimating) {
+                animateButton(this, 1.15);
+            }
+        });
+    });
+    
+    // Feedback visual para cuando se intenta navegar durante animación
+    function showAnimationFeedback(button) {
+        button.style.opacity = '0.5';
+        setTimeout(() => {
+            button.style.opacity = '1';
+        }, 100);
+    }
+    
+    // Agregar feedback visual a los botones cuando no se puede navegar
+    [prevBtn, nextBtn].forEach(button => {
+        const originalClick = button.onclick;
+        button.addEventListener('click', function(e) {
+            if (isAnimating) {
+                showAnimationFeedback(this);
+                e.stopPropagation();
+            }
         });
     });
 });
