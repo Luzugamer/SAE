@@ -4,7 +4,7 @@ from .models import Examen, Pregunta, Opcion, ExamenPregunta
 class ExamenForm(forms.ModelForm):
     class Meta:
         model = Examen
-        fields = ['titulo', 'descripcion', 'duracion', 'tipo_examen']
+        fields = ['titulo', 'descripcion', 'duracion', 'tipo_examen', 'nivel_dificultad']  # AGREGAR nivel_dificultad
         widgets = {
             'descripcion': forms.Textarea(attrs={'rows': 3}),
         }
@@ -12,33 +12,20 @@ class ExamenForm(forms.ModelForm):
 class PreguntaForm(forms.ModelForm):
     class Meta:
         model = Pregunta
-        fields = ['enunciado', 'tipo_pregunta', 'nivel_dificultad', 'respuesta_correcta', 'explicacion']
+        fields = ['enunciado', 'tipo_pregunta', 'tema', 'respuesta_correcta', 'explicacion']  # QUITAR nivel_dificultad, AGREGAR tema
         widgets = {
             'enunciado': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'explicacion': forms.Textarea(attrs={'rows': 2, 'class': 'form-control'}),
             'respuesta_correcta': forms.TextInput(attrs={'class': 'form-control'}),
             'tipo_pregunta': forms.Select(attrs={'class': 'form-control', 'id': 'id_tipo_pregunta'}),
-            'nivel_dificultad': forms.Select(attrs={'class': 'form-control'}),
+            'tema': forms.Select(attrs={'class': 'form-control'}),  # AGREGAR
         }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, curso=None, **kwargs):  # MODIFICAR
         super().__init__(*args, **kwargs)
-        # Hacer que respuesta_correcta no sea requerida inicialmente
         self.fields['respuesta_correcta'].required = False
-
-    def clean(self):
-        cleaned_data = super().clean()
-        tipo_pregunta = cleaned_data.get('tipo_pregunta')
-        respuesta_correcta = cleaned_data.get('respuesta_correcta')
-
-        # Solo validar respuesta_correcta para tipos que no sean opción múltiple
-        if tipo_pregunta in ['verdadero_falso', 'respuesta_corta']:
-            if not respuesta_correcta:
-                raise forms.ValidationError({
-                    'respuesta_correcta': 'La respuesta correcta es obligatoria para este tipo de pregunta.'
-                })
-
-        return cleaned_data
+        if curso:  # AGREGAR
+            self.fields['tema'].queryset = curso.temas.all()
 
 class OpcionForm(forms.ModelForm):
     class Meta:

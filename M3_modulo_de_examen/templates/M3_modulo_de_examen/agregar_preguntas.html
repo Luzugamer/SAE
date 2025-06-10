@@ -20,7 +20,7 @@
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">{{ pregunta.pregunta.enunciado|truncatechars:100 }}</div>
                         <small class="text-muted">
-                            {{ pregunta.pregunta.tipo_pregunta|capfirst }} - {{ pregunta.pregunta.nivel_dificultad|capfirst }}
+                            {{ pregunta.pregunta.tipo_pregunta|capfirst }}{% if pregunta.pregunta.tema %} - {{ pregunta.pregunta.tema.nombre }}{% endif %}
                             {% if pregunta.pregunta.tipo_pregunta == 'respuesta_corta' %}
                                 - Respuesta: "{{ pregunta.pregunta.respuesta_correcta }}"
                             {% elif pregunta.pregunta.tipo_pregunta == 'verdadero_falso' %}
@@ -74,11 +74,11 @@
                         {% endif %}
                     </div>
                     <div class="col-md-6">
-                        <label for="{{ pregunta_form.nivel_dificultad.id_for_label }}" class="form-label">Nivel de Dificultad *</label>
-                        {{ pregunta_form.nivel_dificultad }}
-                        {% if pregunta_form.nivel_dificultad.errors %}
+                        <label for="{{ pregunta_form.tema.id_for_label }}" class="form-label">Tema (Opcional)</label>
+                        {{ pregunta_form.tema }}
+                        {% if pregunta_form.tema.errors %}
                             <div class="invalid-feedback d-block">
-                                {{ pregunta_form.nivel_dificultad.errors }}
+                                {{ pregunta_form.tema.errors }}
                             </div>
                         {% endif %}
                     </div>

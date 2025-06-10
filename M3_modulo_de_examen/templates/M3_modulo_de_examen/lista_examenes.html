@@ -34,6 +34,9 @@
                 <a href="{% url 'estadisticas_examen' examen.id %}" class="btn btn-sm btn-outline-info">
                     <i class="fas fa-chart-bar"></i> Estadísticas
                 </a>
+                <a href="{% url 'eliminar_examen' examen.id %}" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-trash"></i> Eliminar
+                </a>
                 {% else %}
                 <a href="{% url 'responder_examen' examen.id %}" class="btn btn-sm btn-primary">
                     <i class="fas fa-play"></i> Realizar Examen

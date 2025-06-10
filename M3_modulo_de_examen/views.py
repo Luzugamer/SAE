@@ -51,7 +51,7 @@ def agregar_preguntas(request, examen_id):
     examen = get_object_or_404(Examen, id=examen_id)
     
     if request.method == 'POST':
-        pregunta_form = PreguntaForm(request.POST)
+        pregunta_form = PreguntaForm(request.POST, curso=examen.curso)
         opcion_formset = OpcionFormSet(request.POST, prefix='opciones')
         
         if pregunta_form.is_valid():
@@ -106,7 +106,7 @@ def agregar_preguntas(request, examen_id):
         else:
             messages.error(request, 'Por favor corrige los errores en el formulario.')
     else:
-        pregunta_form = PreguntaForm()
+        pregunta_form = PreguntaForm(curso=examen.curso)
         opcion_formset = OpcionFormSet(queryset=Opcion.objects.none(), prefix='opciones')
     
     preguntas_examen = examen.examenpregunta_set.all().order_by('orden')
@@ -118,6 +118,22 @@ def agregar_preguntas(request, examen_id):
         'preguntas_examen': preguntas_examen,
     }
     return render(request, 'M3_modulo_de_examen/agregar_preguntas.html', context)
+
+@login_required
+@rol_requerido('profesor')
+def eliminar_examen(request, examen_id):
+    examen = get_object_or_404(Examen, id=examen_id)
+    curso_codigo = examen.curso.codigo
+    
+    if request.method == 'POST':
+        examen.delete()
+        messages.success(request, 'Examen eliminado exitosamente!')
+        return redirect('lista_examenes_curso', curso_codigo=curso_codigo)
+    
+    context = {
+        'examen': examen,
+    }
+    return render(request, 'M3_modulo_de_examen/confirmar_eliminar.html', context)
 
 @login_required
 def responder_examen(request, examen_id):
@@ -142,9 +158,13 @@ def responder_examen(request, examen_id):
                 opcion_seleccionada = None
                 
                 if pregunta.pregunta.tipo_pregunta == 'opcion_multiple':
-                    opcion_seleccionada = Opcion.objects.get(id=respuesta)
-                    es_correcta = opcion_seleccionada.es_correcta
-                    respuesta_texto = opcion_seleccionada.texto_opcion
+                    try:
+                        opcion_seleccionada = Opcion.objects.get(id=respuesta)
+                        es_correcta = opcion_seleccionada.es_correcta
+                        respuesta_texto = opcion_seleccionada.texto_opcion
+                    except (Opcion.DoesNotExist, ValueError):
+                        es_correcta = False
+                        respuesta_texto = "Sin respuesta"
                 elif pregunta.pregunta.tipo_pregunta == 'verdadero_falso':
                     # Para verdadero/falso, buscar la opción correspondiente
                     opcion_seleccionada = pregunta.pregunta.opciones.get(

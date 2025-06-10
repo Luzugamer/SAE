@@ -23,6 +23,13 @@ class Examen(models.Model):
         ('simulacroFlash', 'SimulacroFlash')
     ]
     
+    NIVEL_DIFICULTAD_CHOICES = [
+        ('facil', 'Fácil'),
+        ('medio', 'Medio'),
+        ('dificil', 'Difícil'),
+    ]
+    
+    nivel_dificultad = models.CharField(max_length=10, choices=NIVEL_DIFICULTAD_CHOICES, default='medio')
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='examenes')
     titulo = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True)
@@ -54,6 +61,19 @@ class Examen(models.Model):
             return resultados.aggregate(models.Avg('puntaje'))['puntaje__avg']
         return 0
 
+class Tema(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField(blank=True)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='temas')
+    
+    class Meta:
+        verbose_name = "Tema"
+        verbose_name_plural = "Temas"
+        ordering = ['nombre']
+    
+    def __str__(self):
+        return self.nombre
+
 class Pregunta(models.Model):
     TIPO_PREGUNTA_CHOICES = [
         ('opcion_multiple', 'Opción Múltiple'),
@@ -66,11 +86,11 @@ class Pregunta(models.Model):
         ('medio', 'Medio'),
         ('dificil', 'Difícil'),
     ]
-    
+
+    tema = models.ForeignKey(Tema, on_delete=models.SET_NULL, null=True, blank=True, related_name='preguntas')
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='preguntas')
     enunciado = models.TextField()
     tipo_pregunta = models.CharField(max_length=20, choices=TIPO_PREGUNTA_CHOICES)
-    nivel_dificultad = models.CharField(max_length=10, choices=NIVEL_DIFICULTAD_CHOICES)
     respuesta_correcta = models.TextField(blank=True, null=True)
     explicacion = models.TextField(blank=True)
     creada_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='preguntas_creadas')
